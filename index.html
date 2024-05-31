@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECOMMENDATIONS BY MBTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .search {
+            display: flex;
+            align-items: center;
+        }
+        .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin-right: 10px;
+        }
+    
+        .search button {
+            font-size: 35px;
+            border: none;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+        }
+        
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+        }
+    
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: lighter;
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    
+        .header-menu {
+            overflow: visible;
+            width: 1080px;
+            margin: 0 auto;
+            margin-bottom: 8px;  
+            display: flex;
+            justify-content: center;
+            text-align: center; 
+    
+        }
+        
+    
+        .outer-menu {
+            padding: 8px 0px;
+            display: inline-block;
+            margin-left: 125px;
+            margin-right: 125px;
+            margin-bottom: -1px;
+            text-align: center;
+            position: relative;
+            font-size: 18px;
+            z-index: 9999;
+            list-style-type: none;
+        }
+    
+        .outer-menu > a {
+            list-style-type: none;
+            margin-left: 10px;
+            line-height: 10px;
+            display: inline-block;
+            padding: 10px;
+        }
+    
+        .outer-menu > a:first-child {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 40px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+        }
+        .outer-menu li > a {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+      
+    
+        .outer-menu:hover a {
+            color: black; 
+        }
+    
+        .outer-menu:active a {
+            color: black;
+        }
+    
+        .inner-menu {
+            display: none;
+            background: #FFFFFF;
+            margin-top: 14px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            border-top: 1px solid #cccaca;
+            box-shadow: 0 2px 4px rgba(34, 25, 25, 0.5);
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+    
+        .inner-menu a {
+            display: block;
+            padding: 7px 15px;
+            z-index: 5000;
+            list-style-type: none;
+            line-height: 10px;
+            text-align: center; 
+            color: black;
+        }
+    
+        .inner-menu a:hover {
+            background-color: black;
+            color: white; 
+        }
+    
+    
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    
+        div.section {
+            border: 1px solid black;
+            margin: 3px;
+            padding: 10px;
+        }
+    
+        a {
+            text-decoration: none;
+            color: darkgray;
+        }
+    
+        .header img {
+            margin-top: 4px;
+        }
+    
+        hr {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .intp-write {
+            display: flex;
+            align-items: flex-start;
+            padding-left: 100px;
+            padding-bottom: -50px;
+    
+        }
+        .intp-img {
+            padding-left: 200px;
+            display: inline-block;
+    
+        }
+        .intp-img p {
+            font-size: 25px;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .intp-img p > b {
+            font-size: 40px;
+        }
+        .intp-q {
+            padding-left: 180px;
+            padding-top: 20px;
+            padding-bottom: 50px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .intp-q p:first-child {
+            color: darkblue;
+            font-weight: 700;
+        }
+        .intp-q p > b {
+            font-size: 20px;
+        }
+    
+        .intp-q {
+            width: 950px; height: 400px;
+            border: none;
+            position: relative;
+            overflow-y: scroll;
+            scrollbar-width: none;
+    
+        }
+        @media screen and (max-width: 767px) {
+            .header {
+                flex-direction: column;
+                padding: 80px;
+            }
+            .header h1 {
+                    margin-top: 80px;
+            }
+            .header-menu {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .outer-menu {
+                margin: 10px 0;
+                flex-direction: row;
+            }
+            .intp-write {
+                flex-direction: column;
+                align-items: center;
+                padding-left: 0;
+            }
+            .intp-img {
+                padding-left: 0;
+                text-align: center;
+            }
+            .intp-q {
+                padding-left: 20px;
+                width: 100%;
+                max-width: 90%;
+            }
+            .search {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 70px;
+            top: 20px;
+            }
+            .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin: 0 auto;
+            display: block;
+            }
+    
+            .search button {
+            font-size: 35px;
+            border: none;
+            float: right;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+            float: right;
+    
+            }
+            body { position: relative;}
+            .header img { 
+                    position: absolute;
+                    top: 30px;
+                    right: 20px;
+    
+                    
+            }
+            .inner-menu {
+                    position: absolute;
+                    left: 100%;
+                    transform: translateY(0);
+                    top: -10px;
+            }
+            
+        }
+    
+        @media screen and (min-width: 768px) and (max-width: 959px) {
+            .header {
+                flex-direction: column;
+                padding: 80px;
+            }
+            .header h1 {
+                    margin-top: 80px;
+            }
+            .header-menu {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .outer-menu {
+                margin: 10px 0;
+            }
+            .intp-write {
+                flex-direction: column;
+                align-items: center;
+                padding-left: 0;
+            }
+            .intp-img {
+                padding-left: 0;
+                text-align: center;
+            }
+            .intp-q {
+                padding-left: 20px;
+                width: 100%;
+                max-width: 80%;
+            }
+            .search {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 70px;
+            top: 20px;
+            }
+            .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin: 0 auto;
+            display: block;
+            float: right;
+            }
+    
+            .search button {
+            font-size: 35px;
+            border: none;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+            float: right;
+    
+            }
+            body { position: relative;}
+            .header img { 
+                    position: absolute;
+                    right: 20px;
+                    top: 30px;
+    
+                    
+            }
+            .inner-menu {
+                    position: absolute;
+                    left: 100%;
+                    transform: translateY(0);
+                    top: -10px
+            }
+            
+        }
+    </style>
+    
+<script>
+        $(document).ready(function () {
+            $('.outer-menu').hover(function () {
+                $(this).find('.inner-menu').css('display', 'block');
+            }, function () {
+                $(this).find('.inner-menu').css('display', 'none');
+            });
+        });
+</script>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1>RECOMMENDATIONS BY <b>MBTI</b> TYPE</h1>
+        <form action="https://search.naver.com/search.naver" style="margin-left: auto;">
+            <div class="search">
+                <input type="text" name="query" value="">
+                <button type="submit">⌕</button>
+            </div>
+        </form>
+        &nbsp;&nbsp;&nbsp;
+        <a href="https://wulwu.github.io/qnaafter/">
+            <img src="https://cdn-icons-png.flaticon.com/512/2608/2608207.png" alt="Q&A" width="30">
+        </a>
+        &nbsp;&nbsp;
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="header-menu">
+        <ul class="outer-menu">
+            <li>
+                <a href="#">ES</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/estp/">ESTP</a></li>
+                    <li><a href="https://wulwu.github.io/estj/">ESTJ</a></li>
+                    <li><a href="https://wulwu.github.io/esfp/">ESFP</a></li>
+                    <li><a href="https://wulwu.github.io/esfj/">ESFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">EN</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/entp/">ENTP</a></li>
+                    <li><a href="https://wulwu.github.io/entj/">ENTJ</a></li>
+                    <li><a href="https://wulwu.github.io/enfp_last/">ENFP</a></li>
+                    <li><a href="https://wulwu.github.io/enfj/">ENFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">IS</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/istp/">ISTP</a></li>
+                    <li><a href="https://wulwu.github.io/istj/">ISTJ</a></li>
+                    <li><a href="https://wulwu.github.io/isfp/">ISFP</a></li>
+                    <li><a href="https://wulwu.github.io/isfj/">ISFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">IN</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/intp/">INTP</a></li>
+                    <li><a href="https://wulwu.github.io/intj/">INTJ</a></li>
+                    <li><a href="https://wulwu.github.io/infp/">INFP</a></li>
+                    <li><a href="https://wulwu.github.io/infj/">INFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <div class="intp-write">
+        <div class="intp-img">  
+            <p><b>논리술사</b></p>
+            <p>성격유형: INTP</p><br><br>
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAxMTlfMjUz%2FMDAxNjExMDM5MTM4NjUz.cW5Bl36Cjx1JXDQ66y-vg-AYpFCJwU2qs1shGjvR6Bsg.kUx6muwhdP7MoNsllAhpaor-G_ssk8oGOwgAAAB64zog.PNG.dawnyboom%2Fintp-logician.png&type=sc960_832" width="250">
+        </div>
+        <div class="intp-q">
+            <p>지식을 끝없이 갈망하는 혁신적인 발명가</p>
+            <br><br>
+            <p><b>INTP 특징</b></p><br>
+            <p>- 처음 마주하는 사람일수록 낯가림이 꽤나 심한 편이다.</p>
+            <p>- 영혼 없는 리액션을 잘 한다.</p>
+            <p>- 눈치는 빠르지만 상대방이 원하는 대로 해주기가 귀찮아서 또는 싫어서 그냥 가만히 있는 편이다.</p>
+            <p>- 정서적 표현이 별로 없어 처음에는 좀 차가운 인상으로 보일 수 있지만, 친해지게 되면 자신의 털털하고 캐주얼한 모습을 보여준다.</p>
+            <p>- 자기 스스로에 대해 부정적이고 엄격하다. </p>
+            <p>- 타인에게 큰 관심이 없다.</p>
+            <p>- 주관이 뚜렷하지만 상당히 객관적이다. 스스로 합리적이라고 생각하며, 또 합리적이기를 원한다.</p>
+            <p>- 자신에게 중요한 것이 아니면 잘 잊어버린다.</p><br><br>
+            <br><br>
+        </div>
+    </div>
+
+</body>
+</html>
